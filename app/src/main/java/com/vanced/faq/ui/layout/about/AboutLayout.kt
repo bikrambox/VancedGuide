@@ -73,7 +73,7 @@ fun AboutLayout(activity: ComponentActivity) {
                 .padding(horizontal = 8.dp, vertical = 8.dp)
         ) {
             GradientCard()
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(12.dp))
             LinksCard(links = links)
         }
     }
