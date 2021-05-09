@@ -1,6 +1,8 @@
 package com.vanced.faq
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vanced.faq.repository.categories.CategoryRepository
@@ -13,7 +15,7 @@ class MainViewModel(
     private val categoryRepository: CategoryRepository
 ) : ViewModel() {
 
-    val categories = mutableStateOf<List<GuideCategory>>(emptyList())
+    val categories = mutableStateOf<List<GuideCategory>?>(emptyList())
 
     var isFetching by mutableStateOf(false)
 
@@ -22,11 +24,15 @@ class MainViewModel(
     ) {
         viewModelScope.launch {
             isFetching = true
-            categories.value = categoryRepository.fetch(language).categories.map {
-                GuideCategory(
-                    categoryName = it.category,
-                    data = guideRepository.fetch(language, it.json)
-                )
+            categories.value = try {
+                categoryRepository.fetch(language).categories.map {
+                    GuideCategory(
+                        categoryName = it.category,
+                        data = guideRepository.fetch(language, it.json)
+                    )
+                }
+            } catch (e: Exception) {
+                null
             }
             isFetching = false
         }

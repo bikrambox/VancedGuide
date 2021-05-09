@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.vanced.faq.domain.model.guide.GuideSingleJsonModel
+import com.vanced.faq.ui.component.DataFetchFailedText
 import io.noties.markwon.Markwon
 import org.koin.androidx.compose.get
 
@@ -77,5 +78,7 @@ fun GuideLayout(
                 }
             }
         }
+    } else {
+        DataFetchFailedText()
     }
 }

@@ -114,3 +114,11 @@ fun GuideCard(
         content = content
     )
 }
+
+@Composable
+fun DataFetchFailedText() {
+    Text(
+        modifier = Modifier.padding(horizontal = 8.dp),
+        text = "Failed to fetch data"
+    )
+}
