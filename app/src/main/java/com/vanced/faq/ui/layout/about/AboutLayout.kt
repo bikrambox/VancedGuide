@@ -50,7 +50,7 @@ fun AboutLayout(activity: ComponentActivity) {
         topBar = {
             TopAppBar(
                 title = {
-                    Text("Vanced Guide")
+                    Text("About")
                 },
                 navigationIcon = {
                      IconButton(onClick = {
