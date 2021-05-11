@@ -1,5 +1,6 @@
 package com.vanced.faq
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -32,6 +33,7 @@ class MainViewModel(
                     )
                 }
             } catch (e: Exception) {
+                Log.d("MainViewModel", "failed to fetch: $e")
                 null
             }
             isFetching = false
