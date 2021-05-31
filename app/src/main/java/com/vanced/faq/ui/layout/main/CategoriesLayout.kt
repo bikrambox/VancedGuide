@@ -6,11 +6,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.navigate
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -24,15 +23,16 @@ fun CategoriesLayout(
     navController: NavController
 ) {
     val viewModel: MainViewModel = getViewModel()
-    val refreshState = rememberSwipeRefreshState(isRefreshing = viewModel.isFetching)
-    val categories by remember { viewModel.categories }
+    val isFetching by viewModel.isFetching.observeAsState(false)
+    val categories by viewModel.categories.observeAsState(emptyList())
+    val refreshState = rememberSwipeRefreshState(isRefreshing = isFetching)
     SwipeRefresh(
         state = refreshState,
         onRefresh = { viewModel.fetch() },
-        indicator = { state, refreshTrigger ->
+        indicator = { state, refreshTriggerDistance ->
             SwipeRefreshIndicator(
                 state = state,
-                refreshTriggerDistance = refreshTrigger,
+                refreshTriggerDistance = refreshTriggerDistance,
                 scale = true
             )
         }
@@ -42,7 +42,7 @@ fun CategoriesLayout(
             contentPadding = PaddingValues(vertical = 8.dp)
         ) {
             if (categories != null) {
-                items(categories!!.toList()) { category ->
+                items(categories!!) { category ->
                     ClickableArrow(text = category.categoryName) {
                         with(navController) {
                             currentBackStackEntry?.arguments?.putParcelable(

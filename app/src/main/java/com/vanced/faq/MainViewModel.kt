@@ -1,9 +1,8 @@
 package com.vanced.faq
 
 import android.util.Log
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vanced.faq.repository.categories.CategoryRepository
@@ -16,16 +15,18 @@ class MainViewModel(
     private val categoryRepository: CategoryRepository
 ) : ViewModel() {
 
-    val categories = mutableStateOf<List<GuideCategory>?>(emptyList())
+    private val _categories = MutableLiveData<List<GuideCategory>?>()
+    val categories: LiveData<List<GuideCategory>?> = _categories
 
-    var isFetching by mutableStateOf(false)
+    private val _isFetching = MutableLiveData<Boolean>()
+    val isFetching: LiveData<Boolean> = _isFetching
 
     fun fetch(
         language: String = "en"
     ) {
         viewModelScope.launch {
-            isFetching = true
-            categories.value = try {
+            _isFetching.value = true
+            _categories.value = try {
                 categoryRepository.fetch(language).categories.map {
                     GuideCategory(
                         categoryName = it.category,
@@ -36,7 +37,7 @@ class MainViewModel(
                 Log.d("MainViewModel", "failed to fetch: $e")
                 null
             }
-            isFetching = false
+            _isFetching.value = false
         }
     }
 

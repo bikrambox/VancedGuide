@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.navigate
 import com.vanced.faq.domain.model.guide.GuideJsonModel
 import com.vanced.faq.ui.component.ClickableArrow
 import com.vanced.faq.ui.component.DataFetchFailedText
