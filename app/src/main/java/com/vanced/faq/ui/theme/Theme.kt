@@ -7,8 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
-    primary = Color(0xFF2E73FF),
-    onSurface = Color.White
+    primary = Color(0xFF0477E1),
+    onSurface = Color(0xFFD7D7D7),
+    surface = Color.Black
 )
 
 val Colors.cardColor get() = Color(0xFF191919)
@@ -21,8 +22,8 @@ fun VancedGuideTheme(
 
     MaterialTheme(
         colors = colors,
-        typography = Typography,
-        shapes = Shapes,
+        typography = typography,
+        shapes = shapes,
         content = content
     )
 }

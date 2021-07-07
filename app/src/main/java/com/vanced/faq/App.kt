@@ -17,7 +17,6 @@ class App : Application() {
                 repositoryModule,
                 serviceModule,
                 mapperModule,
-                markwonModule
             )
         }
     }
