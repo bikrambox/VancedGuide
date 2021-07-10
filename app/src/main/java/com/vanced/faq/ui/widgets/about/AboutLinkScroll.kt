@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import com.vanced.faq.ui.component.card.GuideLinkCard
 import com.vanced.faq.ui.component.layout.GuideCategoryLayout
 import com.vanced.faq.ui.component.layout.GuideScrollableItemRow
-import util.links
+import com.vanced.faq.util.links
 
 @Composable
 fun AboutLinksScroll() {

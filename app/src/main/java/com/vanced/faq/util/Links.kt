@@ -1,14 +1,9 @@
-package util
+package com.vanced.faq.util
 
 import com.vanced.faq.R
 import com.vanced.faq.ui.model.LinkModel
 
 val links = listOf(
-    LinkModel(
-        name = "Website",
-        url = "https://vancedapp.com",
-        icon = R.drawable.ic_website
-    ),
     LinkModel(
         name = "GitHub",
         url = "https://github.com/YTVanced",
