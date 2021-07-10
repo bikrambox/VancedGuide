@@ -1,6 +1,7 @@
 package com.vanced.faq.ui.widgets.main
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
@@ -57,9 +58,10 @@ fun MainToolbar(
             }
         },
         navigationIcon = if (currentDestinationRoute != "categories") {{
-            IconButton(onClick = {
-                navController.popBackStack()
-            }) {
+            IconButton(
+                modifier = Modifier.fillMaxSize(),
+                onClick = { navController.popBackStack() },
+            ) {
                 Icon(
                     imageVector = Icons.Rounded.ArrowBackIos,
                     contentDescription = "Back"
