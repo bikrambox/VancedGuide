@@ -8,7 +8,6 @@ import com.vanced.faq.ui.theme.VancedGuideTheme
 
 class MainActivity : ComponentActivity() {
 
-    @ExperimentalUnsignedTypes
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

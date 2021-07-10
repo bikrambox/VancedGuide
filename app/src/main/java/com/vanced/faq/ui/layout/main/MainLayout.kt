@@ -12,7 +12,6 @@ import androidx.navigation.compose.rememberNavController
 import com.vanced.faq.ui.layout.about.AboutLayout
 import com.vanced.faq.ui.widgets.main.MainToolbar
 
-@ExperimentalUnsignedTypes
 @Composable
 fun MainLayout() {
     val navController = rememberNavController()
